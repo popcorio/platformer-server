@@ -30,6 +30,7 @@ public class Server
 		Socket = socket;
 		IP = ip;
 		timedOut = false;
+		Uninitialized = true;
 	}
 	
 	public Server(int socket, String ip, String uuidOfPlayer)
@@ -38,6 +39,7 @@ public class Server
 		IP = ip;
 		UUIDOfPlayer = uuidOfPlayer;
 		timedOut = false;
+		Uninitialized = true;
 	}
 	
 	public void startMainServer()
