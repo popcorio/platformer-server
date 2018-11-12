@@ -71,6 +71,7 @@ public class Leaderboard
 	public static void changePosition(UUID playerUUID, String Name, float Time, int Level)
 	{
 		int lowestPos = Main.leaderBoard.size() + 1;
+		boolean hasBetterTime = false;
 		for (int i = 0; i < Main.leaderBoard.size(); i++)
 		{
 			if (Main.leaderBoard.get(i).Level != Level)
@@ -78,9 +79,16 @@ public class Leaderboard
 				continue;
 			}
 			
-			if (Main.leaderBoard.get(i).UUIDOfPlayer == playerUUID && Main.leaderBoard.get(i).Level == Level && Main.leaderBoard.get(i).Time > Time)
+			if (Main.leaderBoard.get(i).UUIDOfPlayer == playerUUID && Main.leaderBoard.get(i).Level == Level)
 			{
-				Main.leaderBoard.remove(i);				
+				if (Main.leaderBoard.get(i).Time >= Time)
+				{
+					Main.leaderBoard.remove(i);	
+				}
+				else
+				{
+					hasBetterTime = true;
+				}		
 			}
 			
 			if (Main.leaderBoard.get(i).Time >= Time)
@@ -93,6 +101,10 @@ public class Leaderboard
 				Main.leaderBoard.get(i).Position++;
 			}
 		}
-		Main.leaderBoard.add(new LeaderboardPosition(lowestPos, playerUUID, Name, Level, Time, true));
+		
+		if (hasBetterTime == false)
+		{
+			Main.leaderBoard.add(new LeaderboardPosition(lowestPos, playerUUID, Name, Level, Time, true));
+		}
 	}
 }
