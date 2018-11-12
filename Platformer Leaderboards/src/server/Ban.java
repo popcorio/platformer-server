@@ -15,6 +15,20 @@ public class Ban
 	public Ban(String banUUID)
 	{
 		UUID = java.util.UUID.fromString(banUUID);
+		File fileToWrite = new File("bans.txt");
+		if (fileToWrite.exists() == true)
+		{
+			try
+			{
+				PrintWriter Writer = new PrintWriter("bans.txt", "UTF-8");
+				Writer.println(banUUID);
+				Writer.close();
+			}
+			catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public static void initializeBanList(String fileName)
