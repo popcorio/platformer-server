@@ -15,12 +15,23 @@ public class Ban
 	public Ban(String banUUID, boolean toBan)
 	{
 		UUID = java.util.UUID.fromString(banUUID);
-		File fileToWrite = new File("bans.txt");
+		File fileToWrite = new File(Main.leaderboardFile);
 		if (fileToWrite.exists() == true && toBan == true)
 		{
 			try
 			{
-				PrintWriter Writer = new PrintWriter("bans.txt", "UTF-8");
+				PrintWriter Writer = new PrintWriter(Main.leaderboardFile, "UTF-8");
+				for (int i = -1; i < Main.banList.size(); i++)
+				{
+					if (i == -1)
+					{
+						Writer.println("BANS - DO NOT EDIT DURING USAGE");
+					}
+					else
+					{
+						Writer.println(Main.banList.get(i).UUID);
+					}
+				}
 				Writer.println(banUUID);
 				Writer.close();
 			}

@@ -23,19 +23,19 @@ public class LeaderboardPosition
 		Level = level;
 		Time = time;
 		toDelete = false;
-		File fileToWrite = new File("leaderboard.txt");
+		File fileToWrite = new File(Main.leaderboardFile);
 		if (fileToWrite.exists() == true && toAdd == true)
 		{
 			try 
 			{
-				PrintWriter Writer = new PrintWriter("leaderboard.txt", "UTF-8");
+				PrintWriter Writer = new PrintWriter(Main.leaderboardFile, "UTF-8");
 				for (int i = -1; i < Main.leaderBoard.size(); i++)
 				{
 					if (i == -1)
 					{
 						Writer.println("LEADERBOARD - DO NOT EDIT DURING USAGE");
 					}
-					else
+					else if (Main.leaderBoard.get(i).toDelete == false)
 					{
 						Writer.println(Main.leaderBoard.get(i).Position + " " + Main.leaderBoard.get(i).UUIDOfPlayer + " " + Main.leaderBoard.get(i).nameOfPlayer + " " + Main.leaderBoard.get(i).Level + " " + Main.leaderBoard.get(i).Time);
 					}
