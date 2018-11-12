@@ -40,8 +40,6 @@ public class Main
 			{
 				while (true)
 				{
-					leaderBoard = (ArrayList<LeaderboardPosition>) leaderBoard.stream().filter(b -> !b.toDelete).collect(Collectors.toList());	
-					
 					for (int i = 0; i < serverList.size(); i++)
 					{
 						if (serverList.get(i).Uninitialized == true)

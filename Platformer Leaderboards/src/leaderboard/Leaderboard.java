@@ -10,15 +10,6 @@ import main.Main;
 
 public class Leaderboard 
 {
-	public int betterTime(int pos1, int time1, int pos2, int time2)
-	{
-		if (time1 >= time2)
-		{
-			return pos2;
-		}
-		return pos1;
-	}
-
 	public static void initializeLeaderboard(String fileName)
 	{
 		File fileToWrite = new File(fileName);
@@ -89,7 +80,7 @@ public class Leaderboard
 			
 			if (Main.leaderBoard.get(i).UUIDOfPlayer == playerUUID && Main.leaderBoard.get(i).Level == Level && Main.leaderBoard.get(i).Time > Time)
 			{
-				Main.leaderBoard.get(i).toDelete = true;				
+				Main.leaderBoard.remove(i);				
 			}
 			
 			if (Main.leaderBoard.get(i).Time >= Time)

@@ -1,6 +1,7 @@
 package server;
 
 import java.util.Scanner;
+import java.util.UUID;
 
 import main.Main;
 
@@ -60,13 +61,57 @@ public class Command
 							}
 						}
 					}
-					else if (userInput.contains("list"))
+					else if (userInput.contains("listp"))
 					{
 						for (int i = 0; i < Main.serverList.size(); i++)
 						{
 							System.out.println("Player: " + Main.serverList.get(i).Socket + " IP: " + Main.serverList.get(i).IP + " UUID: " + Main.serverList.get(i).UUIDOfPlayer);
 							System.out.flush();
 						}
+					}
+					else if (userInput.contains("listl"))
+					{
+						int playerToList = 999999999;
+						try
+						{
+							playerToList = Integer.parseInt(userInput.replace("listl ", ""));
+						}
+						catch (Exception e)
+						{
+							for (int i = 0; i < Main.leaderBoard.size(); i++)
+							{
+								System.out.println("Position: " + Main.leaderBoard.get(i).Position + " Level: " + Main.leaderBoard.get(i).Level + " UUID: " + Main.leaderBoard.get(i).UUIDOfPlayer + " Name: " + Main.leaderBoard.get(i).nameOfPlayer + " Time: " + Main.leaderBoard.get(i).Time);
+							}
+							System.out.flush();
+						}
+						
+						boolean foundPlayer = false;
+						String playerUUID = "";
+						for (int i = 0; i < Main.serverList.size(); i++)
+						{
+							if (Main.serverList.get(i).Socket == playerToList)
+							{
+								playerUUID = Main.serverList.get(i).UUIDOfPlayer;
+								foundPlayer = true;
+								break;
+							}
+						}
+						
+						if (foundPlayer == true && !playerUUID.equals(""))
+						{
+							for (int i = 0; i < Main.leaderBoard.size(); i++)
+							{
+								if (Main.leaderBoard.get(i).UUIDOfPlayer == UUID.fromString(playerUUID))
+								{
+									System.out.println("Position: " + Main.leaderBoard.get(i).Position + " Level: " + Main.leaderBoard.get(i).Level + " UUID:" + Main.leaderBoard.get(i).UUIDOfPlayer + " Name: " + Main.leaderBoard.get(i).nameOfPlayer + " Time: " + Main.leaderBoard.get(i).Time);
+								}
+							}
+						}
+						else
+						{
+							System.out.print("Unable to find player: " + playerToList);
+						}
+						System.out.flush();
 					}
 					else if (userInput.contains("ban"))
 					{
