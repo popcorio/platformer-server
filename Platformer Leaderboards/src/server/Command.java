@@ -87,17 +87,20 @@ public class Command
 						
 						boolean foundPlayer = false;
 						String playerUUID = "";
-						for (int i = 0; i < Main.serverList.size(); i++)
+						if (playerToList != 999999999)
 						{
-							if (Main.serverList.get(i).Socket == playerToList)
+							for (int i = 0; i < Main.serverList.size(); i++)
 							{
-								playerUUID = Main.serverList.get(i).UUIDOfPlayer;
-								foundPlayer = true;
-								break;
+								if (Main.serverList.get(i).Socket == playerToList)
+								{
+									playerUUID = Main.serverList.get(i).UUIDOfPlayer;
+									foundPlayer = true;
+									break;
+								}
 							}
 						}
 						
-						if (foundPlayer == true && !playerUUID.equals(""))
+						if (foundPlayer == true && !playerUUID.equals("") && playerToList != 999999999)
 						{
 							for (int i = 0; i < Main.leaderBoard.size(); i++)
 							{
@@ -107,7 +110,7 @@ public class Command
 								}
 							}
 						}
-						else
+						else if (playerToList != 999999999)
 						{
 							System.out.print("Unable to find player: " + playerToList);
 						}
