@@ -51,11 +51,8 @@ public class Main
 						}
 					}
 					
-					serverList = (ArrayList<Server>) serverList.stream().filter(b -> !b.timedOut).collect(Collectors.toList());
-					
 					for (int i = 0; i < messageList.size(); i++)
 					{
-						serverList = (ArrayList<Server>) serverList.stream().filter(b -> !b.timedOut).collect(Collectors.toList());
 						if (messageList.get(i).Message.length() > 0)
 						{
 							String receivedMessage = messageList.get(i).Message.replaceAll("\n", "");
@@ -103,10 +100,12 @@ public class Main
 										}
 									}
 								}
-								serverList.get(messageList.get(i).Socket).sendMessage("Finished");
+								serverList.get(messageList.get(i).serverListIndex).sendMessage("Finished");
 							}
 						}
 					}
+					
+					serverList = (ArrayList<Server>) serverList.stream().filter(b -> !b.timedOut).collect(Collectors.toList());
 					messageList = new ArrayList<Message>();
 					
 					try 

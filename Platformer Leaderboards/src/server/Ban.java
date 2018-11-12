@@ -12,11 +12,11 @@ public class Ban
 {
 	public UUID UUID;
 	
-	public Ban(String banUUID)
+	public Ban(String banUUID, boolean toBan)
 	{
 		UUID = java.util.UUID.fromString(banUUID);
 		File fileToWrite = new File("bans.txt");
-		if (fileToWrite.exists() == true)
+		if (fileToWrite.exists() == true && toBan == true)
 		{
 			try
 			{
@@ -59,7 +59,7 @@ public class Ban
 					{
 						if (!curLine.contains("BANS"))
 						{
-							Main.banList.add(new Ban(curLine));
+							Main.banList.add(new Ban(curLine, false));
 						}
 						curLine = bufferedReader.readLine();
 					}

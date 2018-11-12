@@ -64,7 +64,7 @@ public class Command
 					{
 						for (int i = 0; i < Main.serverList.size(); i++)
 						{
-							System.out.println("Player: " + Main.serverList.get(i).Player + " IP: " + Main.serverList.get(i).IP + " UUID: " + Main.serverList.get(i).UUIDOfPlayer);
+							System.out.println("Player: " + Main.serverList.get(i).Socket + " IP: " + Main.serverList.get(i).IP + " UUID: " + Main.serverList.get(i).UUIDOfPlayer);
 							System.out.flush();
 						}
 					}
@@ -91,7 +91,7 @@ public class Command
 								{
 									if (Main.serverList.get(i).Socket == playerToBan)
 									{
-										Main.banList.add(new Ban(Main.serverList.get(i).UUIDOfPlayer.toString()));
+										Main.banList.add(new Ban(Main.serverList.get(i).UUIDOfPlayer.toString(), true));
 										Main.serverList.get(i).dropServer();
 										System.out.println("Banned player: " + playerToBan);
 										System.out.flush();

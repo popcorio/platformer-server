@@ -23,7 +23,7 @@ public class Server
 	public BufferedWriter Output;
 	public boolean Banned;
 	public boolean timedOut;
-	public int Player;
+	public int serverListIndex;
 	
 	public Server(int socket, String ip)
 	{
@@ -33,11 +33,12 @@ public class Server
 		Uninitialized = true;
 	}
 	
-	public Server(int socket, String ip, String uuidOfPlayer)
+	public Server(int socket, String ip, String uuidOfPlayer, int serverlistindex)
 	{
 		Socket = socket;
 		IP = ip;
 		UUIDOfPlayer = uuidOfPlayer;
+		serverListIndex = serverlistindex;
 		timedOut = false;
 		Uninitialized = true;
 	}
@@ -94,7 +95,8 @@ public class Server
                     	out.write(String.valueOf(Main.socketIndex));
                     	out.newLine();
                     	out.flush();
-                    	Main.serverList.add(new Server(Main.socketIndex, clientSock.getRemoteSocketAddress().toString().replace("/", ""), Line));
+                    	int Index = Main.serverList.size();
+                    	Main.serverList.add(new Server(Main.socketIndex, clientSock.getRemoteSocketAddress().toString().replace("/", ""), Line, Index));
                     }
                     else
                     {
@@ -167,7 +169,7 @@ public class Server
                     {
                     	if (!timedOut)
                     	{
-                    		Main.messageList.add(new Message(Line, UUIDOfPlayer, Socket));
+                    		Main.messageList.add(new Message(Line, UUIDOfPlayer, Socket, serverListIndex));
                     	}
                     	else
                     	{
