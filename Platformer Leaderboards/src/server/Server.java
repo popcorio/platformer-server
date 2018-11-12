@@ -96,7 +96,6 @@ public class Server
                     	out.newLine();
                     	out.flush();
                     	int Index = Main.serverList.size();
-                    	System.out.println(Index);
                     	Main.serverList.add(new Server(Main.socketIndex, clientSock.getRemoteSocketAddress().toString().replace("/", ""), Line, Index));
                     }
                     else
