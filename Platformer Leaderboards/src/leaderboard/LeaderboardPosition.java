@@ -31,7 +31,7 @@ public class LeaderboardPosition
 				PrintWriter Writer = new PrintWriter("leaderboard.txt", "UTF-8");
 				for (int i = 0; i < allPreviousLines.size(); i++)
 				{
-					Writer.print(allPreviousLines.get(i));
+					Writer.println(allPreviousLines.get(i));
 				}
 				Writer.println(pos + " " + playeruuid + " " + name + " " + level + " " + time);
 				Writer.close();
