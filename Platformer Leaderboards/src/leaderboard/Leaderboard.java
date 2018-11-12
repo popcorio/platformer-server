@@ -83,11 +83,13 @@ public class Leaderboard
 			{
 				if (Main.leaderBoard.get(i).Time >= Time)
 				{
-					Main.leaderBoard.remove(i);	
+					Main.leaderBoard.remove(i);
+					continue;
 				}
 				else
 				{
 					hasBetterTime = true;
+					break;
 				}		
 			}
 			
