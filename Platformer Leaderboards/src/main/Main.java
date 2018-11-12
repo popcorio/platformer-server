@@ -102,10 +102,8 @@ public class Main
 											}
 										}
 									}
-									serverList.get(messageList.get(i).Socket).sendMessage("Finished");
 								}
-								
-								
+								serverList.get(messageList.get(i).Socket).sendMessage("Finished");
 							}
 						}
 					}

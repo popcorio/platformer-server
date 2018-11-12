@@ -59,7 +59,7 @@ public class Leaderboard
 							
 							if (Banned == false)
 							{
-								Main.leaderBoard.add(new LeaderboardPosition(Integer.parseInt(splitLine[0]), UUID.fromString(splitLine[1]), splitLine[2], Integer.parseInt(splitLine[3]), Float.parseFloat(splitLine[4])));
+								Main.leaderBoard.add(new LeaderboardPosition(Integer.parseInt(splitLine[0]), UUID.fromString(splitLine[1]), splitLine[2], Integer.parseInt(splitLine[3]), Float.parseFloat(splitLine[4]), false));
 							}	
 						}
 						curLine = bufferedReader.readLine();
@@ -102,6 +102,6 @@ public class Leaderboard
 				Main.leaderBoard.get(i).Position++;
 			}
 		}
-		Main.leaderBoard.add(new LeaderboardPosition(lowestPos, playerUUID, Name, Level, Time));
+		Main.leaderBoard.add(new LeaderboardPosition(lowestPos, playerUUID, Name, Level, Time, true));
 	}
 }

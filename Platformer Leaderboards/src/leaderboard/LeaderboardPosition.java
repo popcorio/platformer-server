@@ -13,7 +13,7 @@ public class LeaderboardPosition
 	public float Time;
 	public boolean toDelete;
 	
-	public LeaderboardPosition(int pos, UUID playeruuid, String name, int level, float time)
+	public LeaderboardPosition(int pos, UUID playeruuid, String name, int level, float time, boolean toAdd)
 	{
 		Position = pos;
 		UUIDOfPlayer = playeruuid;
@@ -21,7 +21,7 @@ public class LeaderboardPosition
 		Level = level;
 		Time = time;
 		File fileToWrite = new File("leaderboard.txt");
-		if (fileToWrite.exists() == false)
+		if (fileToWrite.exists() == true && toAdd == true)
 		{
 			try 
 			{
