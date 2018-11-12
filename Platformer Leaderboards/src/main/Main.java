@@ -67,7 +67,7 @@ public class Main
 									float Time = Float.parseFloat(givenParameters[3]);
 									int Level = Integer.parseInt(givenParameters[4]);
 									Leaderboard.changePosition(playerUUID, Name, Time, Level);
-									serverList.get(messageList.get(i).Socket).sendMessage("Recorded");
+									serverList.get(messageList.get(i).serverListIndex).sendMessage("Recorded");
 								}
 							}
 							else if (receivedMessage.contains("Get"))
