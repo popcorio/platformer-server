@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import main.Main;
 
@@ -83,7 +85,7 @@ public class Leaderboard
 			{
 				if (Main.leaderBoard.get(i).Time >= Time)
 				{
-					Main.leaderBoard.remove(i);
+					Main.leaderBoard.get(i).toDelete = true;
 					continue;
 				}
 				else
@@ -103,6 +105,7 @@ public class Leaderboard
 				Main.leaderBoard.get(i).Position++;
 			}
 		}
+		Main.leaderBoard = (ArrayList<LeaderboardPosition>) Main.leaderBoard.stream().filter(b -> !b.toDelete).collect(Collectors.toList());
 		
 		if (hasBetterTime == false)
 		{
