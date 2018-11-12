@@ -2,6 +2,8 @@ package leaderboard;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.util.List;
 import java.util.UUID;
 
 public class LeaderboardPosition 
@@ -25,7 +27,12 @@ public class LeaderboardPosition
 		{
 			try 
 			{
+				List<String> allPreviousLines = Files.readAllLines(fileToWrite.toPath());
 				PrintWriter Writer = new PrintWriter("leaderboard.txt", "UTF-8");
+				for (int i = 0; i < allPreviousLines.size(); i++)
+				{
+					Writer.print(allPreviousLines.get(i));
+				}
 				Writer.println(pos + " " + playeruuid + " " + name + " " + level + " " + time);
 				Writer.close();
 			}

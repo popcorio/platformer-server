@@ -59,7 +59,7 @@ public class Main
 							
 							if (receivedMessage.contains("Record"))
 							{
-								if (serverList.get(messageList.get(i).Socket).Banned == false)
+								if (serverList.get(messageList.get(i).serverListIndex).Banned == false)
 								{
 									String[] givenParameters = receivedMessage.split(" ");
 									UUID playerUUID = UUID.fromString(givenParameters[1]);
@@ -95,7 +95,7 @@ public class Main
 											int leaderBoardPos = leaderBoard.get(j).Position;
 											if (Math.abs(leaderBoardPos - playerPosition) <= surroundingSize)
 											{
-												serverList.get(messageList.get(i).Socket).sendMessage(leaderBoardPos + " " + leaderBoard.get(j).nameOfPlayer + " " + leaderBoard.get(j).Time + "\n");
+												serverList.get(messageList.get(i).serverListIndex).sendMessage(leaderBoardPos + " " + leaderBoard.get(j).nameOfPlayer + " " + leaderBoard.get(j).Time + "\n");
 											}
 										}
 									}
