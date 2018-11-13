@@ -85,6 +85,7 @@ public class Leaderboard
 	public static void changePosition(UUID playerUUID, String Name, float Time, int Level)
 	{
 		int lowestPos = Main.leaderBoard.size() + 1;
+		int ogLowestPos = lowestPos; 
 		boolean hasBetterTime = false;
 		int serverIndex = findPlayerNumber(playerUUID.toString());
 		
@@ -126,6 +127,11 @@ public class Leaderboard
 			}
 		}
 		Main.leaderBoard = (ArrayList<LeaderboardPosition>) Main.leaderBoard.stream().filter(b -> !b.toDelete).collect(Collectors.toList());
+		
+		if (ogLowestPos == lowestPos)
+		{
+			lowestPos = Main.leaderBoard.size() + 1;
+		}
 		
 		if (hasBetterTime == false)
 		{

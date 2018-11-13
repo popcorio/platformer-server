@@ -50,7 +50,7 @@ public class Main
 		{
 			if (serverListIndexRemoved == messageList.get(i).serverListIndex)
 			{
-				continue;
+				messageList.remove(i);
 			}
 			
 			if (serverListIndexRemoved < messageList.get(i).serverListIndex)
