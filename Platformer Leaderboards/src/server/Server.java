@@ -52,9 +52,9 @@ public class Server
             @Override
             public void run() 
             {
-                ServerSocket serverSock;
                 try 
                 {
+                	ServerSocket serverSock;
                     serverSock = new ServerSocket(023123);
 					System.out.println("Main Server started.");
                     Socket clientSock = serverSock.accept();
