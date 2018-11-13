@@ -80,7 +80,7 @@ public class Main
 					
 					for (int i = 0; i < messageList.size(); i++)
 					{
-						if (messageList.get(i).Message.length() > 0)
+						if (messageList.get(i).Message != null && messageList.get(i).Message.length() > 0)
 						{
 							String receivedMessage = messageList.get(i).Message.replaceAll("\n", "");
 							
