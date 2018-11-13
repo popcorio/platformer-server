@@ -70,10 +70,29 @@ public class Leaderboard
 		}
 	}
 	
+	public static int findPlayerNumber(String playerUUID)
+	{
+		for (int i = 0; i < Main.serverList.size(); i++)
+		{
+			if (Main.serverList.get(i).UUIDOfPlayer.equals(playerUUID))
+			{
+				return Main.serverList.get(i).Socket;
+			}
+		}
+		return -1;
+	}
+	
 	public static void changePosition(UUID playerUUID, String Name, float Time, int Level)
 	{
 		int lowestPos = Main.leaderBoard.size() + 1;
 		boolean hasBetterTime = false;
+		int serverIndex = findPlayerNumber(playerUUID.toString());
+		
+		if (serverIndex != -1)
+		{
+			System.out.println("Player " + serverIndex + " just gave a time of " + Time + "ms on level " + Level);
+		}
+		
 		for (int i = 0; i < Main.leaderBoard.size(); i++)
 		{
 			if (Main.leaderBoard.get(i).Level != Level)
@@ -81,10 +100,11 @@ public class Leaderboard
 				continue;
 			}
 			
-			if (Main.leaderBoard.get(i).UUIDOfPlayer == playerUUID && Main.leaderBoard.get(i).Level == Level)
+			if (Main.leaderBoard.get(i).UUIDOfPlayer.equals(playerUUID) && Main.leaderBoard.get(i).Level == Level)
 			{
 				if (Main.leaderBoard.get(i).Time >= Time)
 				{
+					lowestPos--;
 					Main.leaderBoard.get(i).toDelete = true;
 					continue;
 				}

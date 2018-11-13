@@ -35,7 +35,7 @@ public class LeaderboardPosition
 					{
 						Writer.println("LEADERBOARD - DO NOT EDIT DURING USAGE");
 					}
-					else if (Main.leaderBoard.get(i).toDelete == false)
+					else
 					{
 						Writer.println(Main.leaderBoard.get(i).Position + " " + Main.leaderBoard.get(i).UUIDOfPlayer + " " + Main.leaderBoard.get(i).nameOfPlayer + " " + Main.leaderBoard.get(i).Level + " " + Main.leaderBoard.get(i).Time);
 					}

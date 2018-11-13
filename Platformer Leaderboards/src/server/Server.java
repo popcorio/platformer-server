@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.UUID;
 
 import main.Main;
@@ -178,8 +179,16 @@ public class Server
 					Thread.sleep(10);
                     }
                 }
+                catch (SocketException e)
+                {
+                	Main.dropServerIndicies(serverListIndex);
+                	timedOut = true;
+                	System.out.println("Server " + Socket + " was dropped.");
+                	System.out.flush();
+                }
                 catch (Exception e)
                 {
+                	Main.dropServerIndicies(serverListIndex);
                 	timedOut = true;
                 	e.printStackTrace();
                 }

@@ -104,7 +104,7 @@ public class Command
 						{
 							for (int i = 0; i < Main.leaderBoard.size(); i++)
 							{
-								if (Main.leaderBoard.get(i).UUIDOfPlayer == UUID.fromString(playerUUID))
+								if (Main.leaderBoard.get(i).UUIDOfPlayer.equals(UUID.fromString(playerUUID)))
 								{
 									System.out.println("Position: " + Main.leaderBoard.get(i).Position + " Level: " + Main.leaderBoard.get(i).Level + " UUID:" + Main.leaderBoard.get(i).UUIDOfPlayer + " Name: " + Main.leaderBoard.get(i).nameOfPlayer + " Time: " + Main.leaderBoard.get(i).Time);
 								}
