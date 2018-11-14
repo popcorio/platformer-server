@@ -47,6 +47,8 @@ public class Main
 							serverList.get(i).startCustomServer();
 							serverList.get(i).Uninitialized = false;
 						}
+							
+						serverList.get(i).serverListIndex = i;
 					}
 					
 					for (int i = 0; i < messageList.size(); i++)

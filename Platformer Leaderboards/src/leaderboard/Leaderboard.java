@@ -101,7 +101,7 @@ public class Leaderboard
 				continue;
 			}
 			
-			if (Main.leaderBoard.get(i).UUIDOfPlayer.equals(playerUUID) && Main.leaderBoard.get(i).Level == Level)
+			if (Main.leaderBoard.get(i).UUIDOfPlayer.equals(playerUUID))
 			{
 				if (Main.leaderBoard.get(i).Time >= Time)
 				{
@@ -123,10 +123,30 @@ public class Leaderboard
 				{
 					lowestPos = Main.leaderBoard.get(i).Position;
 				}
-				
-				Main.leaderBoard.get(i).Position++;
 			}
 		}
+		
+		if (hasBetterTime == false)
+		{
+			for (int i = 0; i < Main.leaderBoard.size(); i++)
+			{
+				if (Main.leaderBoard.get(i).Level != Level)
+				{	
+					continue;
+				}
+				
+				if (Main.leaderBoard.get(i).UUIDOfPlayer.equals(playerUUID))
+				{
+					continue;
+				}
+				
+				if (Main.leaderBoard.get(i).Time >= Time)
+				{
+					Main.leaderBoard.get(i).Position++;
+				}
+			}
+		}
+		
 		Main.leaderBoard = (ArrayList<LeaderboardPosition>) Main.leaderBoard.stream().filter(b -> !b.toDelete).collect(Collectors.toList());
 		
 		if (ogLowestPos == lowestPos)
