@@ -86,15 +86,22 @@ public class Main
 							
 							if (receivedMessage.contains("Record"))
 							{
-								if (serverList.get(messageList.get(i).serverListIndex).Banned == false)
+								try
 								{
-									String[] givenParameters = receivedMessage.split(" ");
-									UUID playerUUID = UUID.fromString(givenParameters[1]);
-									String Name = givenParameters[2];
-									float Time = Float.parseFloat(givenParameters[3]);
-									int Level = Integer.parseInt(givenParameters[4]);
-									Leaderboard.changePosition(playerUUID, Name, Time, Level);
-									serverList.get(messageList.get(i).serverListIndex).sendMessage("Recorded");
+									if (serverList.get(messageList.get(i).serverListIndex).Banned == false)
+									{
+										String[] givenParameters = receivedMessage.split(" ");
+										UUID playerUUID = UUID.fromString(givenParameters[1]);
+										String Name = givenParameters[2];
+										float Time = Float.parseFloat(givenParameters[3]);
+										int Level = Integer.parseInt(givenParameters[4]);
+										Leaderboard.changePosition(playerUUID, Name, Time, Level);
+										serverList.get(messageList.get(i).serverListIndex).sendMessage("Recorded");
+									}
+								}
+								catch (Exception e)
+								{
+									e.printStackTrace();
 								}
 							}
 							else if (receivedMessage.contains("Get"))
