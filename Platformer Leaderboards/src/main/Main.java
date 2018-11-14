@@ -31,35 +31,6 @@ public class Main
 		Command.startChecker();
 	}
 	
-	public static void dropServerIndicies(int serverListIndexRemoved)
-	{
-		for (int i = 0; i < serverList.size(); i++)
-		{
-			if (i == serverListIndexRemoved)
-			{
-				continue;
-			}
-			
-			if (serverList.get(i).serverListIndex > serverListIndexRemoved)
-			{
-				serverList.get(i).serverListIndex--;
-			}
-		}
-		
-		for (int i = 0; i < messageList.size(); i++)
-		{
-			if (serverListIndexRemoved == messageList.get(i).serverListIndex)
-			{
-				messageList.remove(i);
-			}
-			
-			if (serverListIndexRemoved < messageList.get(i).serverListIndex)
-			{
-				messageList.get(i).serverListIndex--;
-			}
-		}
-	}
-	
 	public static void serverUpdate()
 	{
 		(new Thread()
@@ -80,6 +51,11 @@ public class Main
 					
 					for (int i = 0; i < messageList.size(); i++)
 					{
+						if (messageList.get(i) == null)
+						{
+							continue;
+						}
+						
 						if (messageList.get(i).Message != null && messageList.get(i).Message.length() > 0)
 						{
 							String receivedMessage = messageList.get(i).Message.replaceAll("\n", "");

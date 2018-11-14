@@ -181,14 +181,14 @@ public class Server
                 }
                 catch (SocketException e)
                 {
-                	Main.dropServerIndicies(serverListIndex);
+                	Main.messageList.clear();
                 	timedOut = true;
                 	System.out.println("Server " + Socket + " was dropped.");
                 	System.out.flush();
                 }
                 catch (Exception e)
                 {
-                	Main.dropServerIndicies(serverListIndex);
+                	Main.messageList.clear();
                 	timedOut = true;
                 	e.printStackTrace();
                 }
