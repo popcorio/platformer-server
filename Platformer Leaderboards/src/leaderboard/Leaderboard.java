@@ -131,6 +131,8 @@ public class Leaderboard
 			}
 		}
 		
+		Main.leaderBoard = (ArrayList<LeaderboardPosition>) Main.leaderBoard.stream().filter(b -> !b.toDelete).collect(Collectors.toList());
+		
 		if (hasBetterTime == false)
 		{
 			for (int i = 0; i < Main.leaderBoard.size(); i++)
@@ -151,8 +153,6 @@ public class Leaderboard
 				}
 			}
 		}
-		
-		Main.leaderBoard = (ArrayList<LeaderboardPosition>) Main.leaderBoard.stream().filter(b -> !b.toDelete).collect(Collectors.toList());
 		
 		if (hasBetterTime == false)
 		{
