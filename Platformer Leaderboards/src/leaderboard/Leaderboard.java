@@ -105,7 +105,7 @@ public class Leaderboard
 			{
 				if (Main.leaderBoard.get(i).Time >= Time)
 				{
-					if (lowestPos == ogLowestPos)
+					if (lowestPos == ogLowestPos && Main.leaderBoard.get(i).Time != Time)
 						lowestPos--;
 					Main.leaderBoard.get(i).toDelete = true;
 					continue;
