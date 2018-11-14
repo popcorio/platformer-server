@@ -84,8 +84,9 @@ public class Leaderboard
 	
 	public static void changePosition(UUID playerUUID, String Name, float Time, int Level)
 	{
+		int curPosition = -1;
+		
 		int lowestPos = Main.leaderBoard.size() + 1;
-		int ogLowestPos = lowestPos; 
 		boolean hasBetterTime = false;
 		int serverIndex = findPlayerNumber(playerUUID.toString());
 		
@@ -103,10 +104,14 @@ public class Leaderboard
 			
 			if (Main.leaderBoard.get(i).UUIDOfPlayer.equals(playerUUID))
 			{
+				curPosition = Main.leaderBoard.get(i).Position;
 				if (Main.leaderBoard.get(i).Time >= Time)
 				{
-					if (lowestPos == ogLowestPos && Main.leaderBoard.get(i).Time != Time)
-						lowestPos--;
+					if (Main.leaderBoard.get(i).Position < lowestPos)
+					{
+						lowestPos = Main.leaderBoard.get(i).Position;
+					}
+					
 					Main.leaderBoard.get(i).toDelete = true;
 					continue;
 				}
@@ -114,7 +119,7 @@ public class Leaderboard
 				{
 					hasBetterTime = true;
 					break;
-				}		
+				}
 			}
 			
 			if (Main.leaderBoard.get(i).Time >= Time)
@@ -140,7 +145,7 @@ public class Leaderboard
 					continue;
 				}
 				
-				if (Main.leaderBoard.get(i).Time >= Time)
+				if (Main.leaderBoard.get(i).Time >= Time && Main.leaderBoard.get(i).Position >= lowestPos && lowestPos != curPosition)
 				{
 					Main.leaderBoard.get(i).Position++;
 				}
@@ -148,11 +153,6 @@ public class Leaderboard
 		}
 		
 		Main.leaderBoard = (ArrayList<LeaderboardPosition>) Main.leaderBoard.stream().filter(b -> !b.toDelete).collect(Collectors.toList());
-		
-		if (ogLowestPos == lowestPos)
-		{
-			lowestPos = Main.leaderBoard.size() + 1;
-		}
 		
 		if (hasBetterTime == false)
 		{
